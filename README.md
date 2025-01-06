@@ -45,13 +45,9 @@ Here is an example of a query and its response:
 
 **Query:** "Give me a detailed summary of the document."
 
-**Response:**
+**Example Response:**
 ```
 Response: 
-[Generated detailed summary of the PDF]
-```
-
-## Detailed Example: Summary of the Document
 The document appears to be a technical report or academic paper related to the safety and security of Large Language Models (LLMs). Here is a detailed summary:
 
 ### **Introduction**
@@ -93,6 +89,8 @@ The authors propose several mitigation methods to address the potential risks, i
 The report briefly discusses the issue of deepfakes, which are generated using LLMs or other deep learning models. The authors highlight the potential risks associated with deepfakes, including spreading misinformation and manipulating public opinion.
 
 Overall, the document provides a comprehensive overview of the safety and security concerns related to LLMs and proposes several research directions and mitigation methods to address these concerns.
+```
+
 
 ## Credits
 This project was made during watching [this video course from FreeCodeCamp's YouTube channel](https://www.youtube.com/watch?v=GWB9ApTPTv4&t=7842s).
