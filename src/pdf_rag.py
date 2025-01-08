@@ -11,8 +11,9 @@ import logging
 import os
 from config import CHROMA_COLLECTION_NAME, EMBEDDING_MODEL
 
+
 def load_pdf_data(doc_path: str):
-    
+
     if os.path.exists(doc_path):
         loader = UnstructuredPDFLoader(file_path=doc_path)
         data = loader.load()
@@ -21,12 +22,14 @@ def load_pdf_data(doc_path: str):
     else:
         logging.error(f"PDF file not found at: {doc_path}")
 
+
 def split_documents(data):
     """Split the PDF into chunks"""
     splitter = RecursiveCharacterTextSplitter(chunk_size=1200, chunk_overlap=300)
     chunks = splitter.split_documents(data)
     logging.info(f"PDF split into {len(chunks)} chunks.")
     return chunks
+
 
 def create_vector_db(chunks):
     """Create the vector database"""
@@ -42,6 +45,21 @@ def create_vector_db(chunks):
 
     return vector_db
 
+
+def create_vector_db_persisted(chunks, persist_directory: str):
+    """Create the vector database"""
+    vector_db = Chroma.from_documents(
+        documents=chunks,
+        embedding=OllamaEmbeddings(model=EMBEDDING_MODEL),
+        collection_name=CHROMA_COLLECTION_NAME,
+        persist_directory=persist_directory,
+    )
+
+    logging.info("Vector DB created successfully.")
+
+    return vector_db
+
+
 def create_retriever(vector_db, llm):
     """Create the retriever"""
     QUERY_PROMPT = PromptTemplate(
@@ -51,7 +69,7 @@ def create_retriever(vector_db, llm):
         a vector database. By generating multiple perspectives on the user question, your
         goal is to help the user overcome some of the limitations of the distance-based
         similarity search. Provide these alternative questions separated by newlines.
-        Original question: {question}"""
+        Original question: {question}""",
     )
 
     retriever = MultiQueryRetriever.from_llm(

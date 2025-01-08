@@ -6,9 +6,13 @@ This project implements a PDF-based Retrieval-Augmented Generation (RAG) system 
 ## Features
 - Load and process PDF documents
 - Split PDF into manageable text chunks
+- Persist and query a vector database for efficient document retrieval.
 - Generate vector embeddings for document chunks using Ollama embeddings
-- Retrieve relevant information using a multi-query retriever
 - Create a query-answering chain powered by ChatOllama
+- Seamlessly use Ollama for answering questions about your documents.
+- Accessible through:
+  - **Streamlit Web App**: A user-friendly graphical interface.
+  - **CLI**: For quick and direct access to the functionality.
 
 ## Requirements
 To run this project, follow these steps:
@@ -23,6 +27,8 @@ To run this project, follow these steps:
 
 3. Download and install the `llama3.2` model (or any other model you want to use) on your local Ollama instance. If you want to use a different model, please make sure you change the `MODEL_NAME` constant in the code.
 
+4. Place your PDF document in the `./data` folder and update the `DOC_PATH` variable in `config.py`.
+
 ## File Structure
 - **`src/`**: Contains all source code.
   - `pdf_rag.py`: Core logic for the RAG pipeline.
@@ -32,13 +38,26 @@ To run this project, follow these steps:
 - **`data/LLMs_Safety.pdf`**: The sample PDF document used for testing.
 
 ## Usage
-1. Place your PDF document in the `./data` folder and update the `DOC_PATH` variable in `config.py`.
-2. Run the script:
+
+### **1. Streamlit Web App**
+
+```bash
+streamlit run streamlit_app.py
+```
+This will start the web application on http://localhost:8501.
+1. Open the app in your browser.
+2. Enter your question in the provided text box.
+3. Click "Process" to retrieve answers based on your PDF.
+
+### **2. Command-Line Interface (CLI)**
+
+To launch the Streamlit app, use the following command:
+1. Run the script:
 
    ```bash
    python src/main.py
    ```
-3. View the generated responses in the console.
+2. View the generated responses in the console.
 
 ## Example Query and Response
 Here is an example of a query and its response:
