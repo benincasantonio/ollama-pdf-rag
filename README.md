@@ -34,6 +34,7 @@ To run this project, follow these steps:
   - `pdf_rag.py`: Core logic for the RAG pipeline.
   - `config.py`: Configuration file for constants and paths.
   - `main.py`: Entry point for running the system.
+  - `streamlit_app.py`: Streamlit web app for interactive usage.
 - **`requirements.txt`**: A list of dependencies required to run the project.
 - **`data/LLMs_Safety.pdf`**: The sample PDF document used for testing.
 
